@@ -1,0 +1,107 @@
+{
+	"info": {
+		"_postman_id": "cfab6552-2ab3-4f20-9bb0-407a692bdce5",
+		"name": "microblogging",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21924556"
+	},
+	"item": [
+		{
+			"name": "Seguir a usuario",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"follower_id\": \"user_2\",\r\n    \"followed_id\": \"user_1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://172.26.225.198:8000/api/follow",
+					"protocol": "http",
+					"host": [
+						"172",
+						"26",
+						"225",
+						"198"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"follow"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Tweet",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_id\": \"user_1\",\r\n    \"content\": \"Hola mundo!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://172.26.225.198:8000/api/tweet",
+					"protocol": "http",
+					"host": [
+						"172",
+						"26",
+						"225",
+						"198"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"tweet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mostrar Tweets",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://172.26.225.198:8000/api/timeline/user_2",
+					"protocol": "http",
+					"host": [
+						"172",
+						"26",
+						"225",
+						"198"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"timeline",
+						"user_2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
