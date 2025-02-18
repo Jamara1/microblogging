@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  app:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      container_name: laravel_app
+      restart: unless-stopped
+      ports:
+      - "8000:8000"
+      working_dir: /var/www
+      volumes:
+        - .:/var/www
+      environment:
+        APP_ENV: local
+        AWS_DEFAULT_REGION: us-east-1
+        AWS_ACCESS_KEY_ID: local
+        AWS_SECRET_ACCESS_KEY: local
+        AWS_DYNAMODB_ENDPOINT: http://localstack:4566
+      depends_on:
+        - localstack
+      networks:
+        - laravel_network
+
+  localstack:
+    image: localstack/localstack:latest
+    container_name: localstack
+    restart: unless-stopped
+    ports:
+      - "4566:4566"
+    volumes:
+      - ./localstack-setup.sh:/etc/localstack/init/ready.d/script.sh
+    networks:
+        - laravel_network
+
+networks:
+  laravel_network:
+    driver: bridge
+
+volumes:
+  localstack_data:
